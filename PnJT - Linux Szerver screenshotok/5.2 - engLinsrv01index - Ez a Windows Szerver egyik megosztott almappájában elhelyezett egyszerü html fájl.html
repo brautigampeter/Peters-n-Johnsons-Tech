@@ -1,476 +1,442 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENG-LINSRV01 | Engineering Campus</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Pannónia Számítástechnikai Egyetem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #0a0e17;
-            --bg-card: #0f1520;
-            --bg-card2: #131927;
-            --border: rgba(99, 179, 237, 0.12);
-            --accent: #63b3ed;
-            --accent2: #48bb78;
-            --accent3: #f6ad55;
-            --red: #fc8181;
-            --text: #e2e8f0;
-            --text-muted: #64748b;
-            --text-dim: #94a3b8;
+            --navy: #0d1b2a;
+            --navy2: #1b2d42;
+            --gold: #c9a84c;
+            --gold-light: #e2c97e;
+            --cream: #f7f3ec;
+            --text: #1a1a2e;
+            --text-muted: #5a6070;
+            --white: #ffffff;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Syne', sans-serif;
-            background: var(--bg);
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
             color: var(--text);
-            min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Grid background */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(99,179,237,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99,179,237,0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Glow blob */
-        body::after {
-            content: '';
-            position: fixed;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(99,179,237,0.06) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 48px 24px;
-        }
-
-        /* Header */
-        header {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 48px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid var(--border);
-            flex-wrap: wrap;
-            gap: 20px;
-            animation: fadeDown 0.6s ease both;
-        }
-
-        .header-left .label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--accent);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .header-left h1 {
-            font-size: clamp(28px, 5vw, 42px);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            color: #fff;
-        }
-
-        .header-left h1 span {
-            color: var(--accent);
-        }
-
-        .header-left p {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 10px;
-        }
-
-        .status-badge {
+        nav {
+            background: var(--navy);
+            padding: 0 40px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(72, 187, 120, 0.08);
-            border: 1px solid rgba(72, 187, 120, 0.2);
-            border-radius: 100px;
-            padding: 8px 16px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--accent2);
-            letter-spacing: 0.05em;
-            white-space: nowrap;
+            justify-content: space-between;
+            height: 68px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent2);
+        .nav-logo { display: flex; align-items: center; gap: 14px; }
+
+        .nav-logo .crest {
+            width: 40px; height: 40px;
+            background: var(--gold);
             border-radius: 50%;
-            animation: pulse 2s ease infinite;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: 700;
+            color: var(--navy);
+            font-family: 'Playfair Display', serif;
+            flex-shrink: 0;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(72,187,120,0.4); }
-            50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(72,187,120,0); }
+        .nav-logo .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px; color: var(--white); line-height: 1.2;
         }
 
-        /* Info grid */
-        .info-grid {
+        .nav-logo .logo-text span {
+            display: block; font-size: 11px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300; color: var(--gold-light); letter-spacing: 0.08em;
+        }
+
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            font-size: 14px; font-weight: 400;
+            transition: color 0.2s; letter-spacing: 0.02em;
+        }
+
+        .nav-links a:hover { color: var(--gold-light); }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--navy) !important;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 500 !important;
+        }
+
+        .nav-cta:hover { background: var(--gold-light) !important; }
+
+        .hero {
+            background: var(--navy);
+            min-height: 540px;
+            display: flex; align-items: center;
+            position: relative; overflow: hidden;
+            padding: 80px 40px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px);
+        }
+
+        .hero-content {
+            position: relative; z-index: 1;
+            max-width: 680px;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(201,168,76,0.15);
+            border: 1px solid rgba(201,168,76,0.3);
+            color: var(--gold-light);
+            font-size: 12px; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            padding: 6px 14px; border-radius: 4px; margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 6vw, 58px);
+            font-weight: 700; color: var(--white);
+            line-height: 1.12; margin-bottom: 20px;
+        }
+
+        .hero h1 em { font-style: italic; color: var(--gold); }
+
+        .hero p {
+            font-size: 17px; line-height: 1.7;
+            color: rgba(255,255,255,0.65);
+            max-width: 520px; margin-bottom: 36px; font-weight: 300;
+        }
+
+        .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        .btn-primary {
+            background: var(--gold); color: var(--navy);
+            padding: 13px 28px; border-radius: 8px;
+            font-weight: 500; font-size: 15px; text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+        .btn-secondary {
+            background: transparent; color: rgba(255,255,255,0.8);
+            padding: 13px 28px; border-radius: 8px;
+            font-weight: 400; font-size: 15px; text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .btn-secondary:hover { border-color: var(--gold); color: var(--gold-light); }
+
+        .stats-bar {
+            background: var(--gold);
+            padding: 22px 40px;
+            display: flex; justify-content: center;
+            gap: 60px; flex-wrap: wrap;
+        }
+
+        .stat { text-align: center; }
+
+        .stat .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px; font-weight: 700;
+            color: var(--navy); line-height: 1;
+        }
+
+        .stat .label {
+            font-size: 12px; color: rgba(13,27,42,0.65);
+            font-weight: 500; letter-spacing: 0.05em; margin-top: 4px;
+        }
+
+        .section {
+            padding: 80px 40px;
+            max-width: 1100px; margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center; margin-bottom: 52px;
+        }
+
+        .section-tag {
+            font-size: 12px; font-weight: 500;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 700; color: var(--navy); line-height: 1.2;
+        }
+
+        .section-header p {
+            margin-top: 14px; font-size: 16px;
+            color: var(--text-muted);
+            max-width: 560px; margin-left: auto; margin-right: auto;
+            line-height: 1.7; font-weight: 300;
+        }
+
+        .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 32px;
-            animation: fadeUp 0.6s 0.1s ease both;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
         }
 
-        .info-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+        .card {
+            background: var(--white);
+            border-radius: 14px; padding: 32px 28px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+
+        .card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.10); }
+
+        .card-icon {
+            width: 52px; height: 52px;
+            background: rgba(201,168,76,0.12);
             border-radius: 12px;
-            padding: 20px;
-            transition: border-color 0.2s;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; margin-bottom: 20px;
         }
 
-        .info-card:hover {
-            border-color: rgba(99,179,237,0.3);
+        .card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px; font-weight: 600;
+            color: var(--navy); margin-bottom: 10px;
         }
 
-        .info-card .card-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 8px;
+        .card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+        .card-badge {
+            display: inline-block; margin-top: 16px;
+            background: rgba(13,27,42,0.06); color: var(--navy);
+            font-size: 12px; font-weight: 500;
+            padding: 4px 10px; border-radius: 20px;
         }
 
-        .info-card .card-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--accent);
-        }
+        .news-bg { background: var(--navy); }
 
-        .info-card .card-value.green { color: var(--accent2); }
-        .info-card .card-value.orange { color: var(--accent3); }
-
-        /* Services section */
-        .section-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-bottom: 16px;
-        }
-
-        .services-grid {
+        .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 16px;
-            margin-bottom: 32px;
-            animation: fadeUp 0.6s 0.2s ease both;
+            gap: 20px;
         }
 
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px 22px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: border-color 0.2s, transform 0.2s;
-            cursor: default;
+        .news-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px; padding: 24px;
+            transition: background 0.2s;
         }
 
-        .service-card:hover {
-            border-color: rgba(99,179,237,0.25);
-            transform: translateY(-2px);
+        .news-card:hover { background: rgba(255,255,255,0.08); }
+
+        .news-date {
+            font-size: 11px; font-weight: 500;
+            letter-spacing: 0.1em; color: var(--gold);
+            text-transform: uppercase; margin-bottom: 10px;
         }
 
-        .service-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-            background: rgba(99,179,237,0.08);
-            border: 1px solid rgba(99,179,237,0.12);
+        .news-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px; color: var(--white);
+            margin-bottom: 8px; line-height: 1.3;
         }
 
-        .service-info .service-name {
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--text);
-            margin-bottom: 3px;
+        .news-card p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; font-weight: 300; }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+            padding: 80px 40px; text-align: center;
+            position: relative; overflow: hidden;
         }
 
-        .service-info .service-desc {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        .service-status {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--accent2);
-        }
-
-        .service-status::before {
+        .cta-section::before {
             content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--accent2);
-            border-radius: 50%;
+            position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+            width: 600px; height: 400px;
+            background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
         }
 
-        /* Log section */
-        .log-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 32px;
-            animation: fadeUp 0.6s 0.3s ease both;
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 40px);
+            color: var(--white); margin-bottom: 16px; position: relative;
         }
 
-        .log-section .section-title {
-            margin-bottom: 16px;
+        .cta-section p {
+            color: rgba(255,255,255,0.6); font-size: 16px;
+            margin-bottom: 36px; font-weight: 300; position: relative;
         }
 
-        .log-entry {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--text-dim);
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            display: flex;
-            gap: 12px;
-            align-items: baseline;
-        }
+        .cta-section .btn-primary { position: relative; }
 
-        .log-entry:last-child {
-            border-bottom: none;
-        }
-
-        .log-entry .log-time {
-            color: var(--text-muted);
-            flex-shrink: 0;
-            font-size: 11px;
-        }
-
-        .log-entry .log-tag {
-            flex-shrink: 0;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 1px 6px;
-            border-radius: 4px;
-            letter-spacing: 0.05em;
-        }
-
-        .log-tag.ok {
-            background: rgba(72,187,120,0.12);
-            color: var(--accent2);
-        }
-
-        .log-tag.info {
-            background: rgba(99,179,237,0.12);
-            color: var(--accent);
-        }
-
-        .log-entry .log-msg {
-            color: var(--text-dim);
-        }
-
-        /* Footer */
         footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-            flex-wrap: wrap;
-            gap: 12px;
-            animation: fadeUp 0.6s 0.4s ease both;
+            background: #070f1a; padding: 36px 40px;
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 16px;
         }
 
-        footer .footer-left {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--text-muted);
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 15px; color: rgba(255,255,255,0.6); }
+        .footer-logo span { color: var(--gold); }
+
+        .footer-links { display: flex; gap: 24px; }
+
+        .footer-links a {
+            font-size: 13px; color: rgba(255,255,255,0.4);
+            text-decoration: none; transition: color 0.2s;
         }
 
-        footer .footer-right {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--text-muted);
-            text-align: right;
-        }
+        .footer-links a:hover { color: var(--gold); }
 
-        footer .footer-right span {
-            color: var(--accent);
-        }
-
-        /* Animations */
-        @keyframes fadeDown {
-            from { opacity: 0; transform: translateY(-16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        footer p { font-size: 13px; color: rgba(255,255,255,0.3); }
 
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
 
-        <header>
-            <div class="header-left">
-                <div class="label">Engineering Campus &mdash; Node 01</div>
-                <h1>ENG-<span>LINSRV01</span></h1>
-                <p>150.111.72.20 &nbsp;&bull;&nbsp; Debian GNU/Linux 13 (Trixie)</p>
-            </div>
-            <div class="status-badge">
-                <div class="status-dot"></div>
-                ALL SYSTEMS OPERATIONAL
-            </div>
-        </header>
-
-        <div class="info-grid">
-            <div class="info-card">
-                <div class="card-label">IPv4 Address</div>
-                <div class="card-value">150.111.72.20</div>
-            </div>
-            <div class="info-card">
-                <div class="card-label">Subnet Mask</div>
-                <div class="card-value">/26 &mdash; 255.255.255.192</div>
-            </div>
-            <div class="info-card">
-                <div class="card-label">Default Gateway</div>
-                <div class="card-value">150.111.72.1</div>
-            </div>
-            <div class="info-card">
-                <div class="card-label">DNS Server</div>
-                <div class="card-value">150.111.72.10</div>
-            </div>
-            <div class="info-card">
-                <div class="card-label">Operating System</div>
-                <div class="card-value orange">Debian 13 Trixie</div>
-            </div>
-            <div class="info-card">
-                <div class="card-label">Web Server</div>
-                <div class="card-value green">Apache 2.4 &mdash; Active</div>
+    <nav>
+        <div class="nav-logo">
+            <div class="crest">P</div>
+            <div class="logo-text">
+                Pannónia Számítástechnikai Egyetem
+                <span>University of Computer Science</span>
             </div>
         </div>
+        <ul class="nav-links">
+            <li><a href="#">Képzések</a></li>
+            <li><a href="#">Kutatás</a></li>
+            <li><a href="#">Kampusz</a></li>
+            <li><a href="#">Hallgatóknak</a></li>
+            <li><a href="#" class="nav-cta">Jelentkezés</a></li>
+        </ul>
+    </nav>
 
-        <div class="section-title">Active Services</div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">🌐</div>
-                <div class="service-info">
-                    <div class="service-name">Apache2 HTTP Server</div>
-                    <div class="service-desc">HTTP &mdash; Port 80</div>
-                </div>
-                <div class="service-status">RUNNING</div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💾</div>
-                <div class="service-info">
-                    <div class="service-name">Automated Backup</div>
-                    <div class="service-desc">rsync + cron &mdash; 02:00 daily</div>
-                </div>
-                <div class="service-status">ACTIVE</div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔒</div>
-                <div class="service-info">
-                    <div class="service-name">SSH Server</div>
-                    <div class="service-desc">OpenSSH &mdash; Port 22</div>
-                </div>
-                <div class="service-status">RUNNING</div>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔗</div>
-                <div class="service-info">
-                    <div class="service-name">Domain Membership</div>
-                    <div class="service-desc">campus.local</div>
-                </div>
-                <div class="service-status">JOINED</div>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">Felvételi 2025 / 2026</div>
+            <h1>Alakítsd a <em>digitális</em> jövőt velünk</h1>
+            <p>A Pannónia Számítástechnikai Egyetem Magyarország egyik vezető informatikai felsőoktatási intézménye. Három kampuszon, korszerű infrastruktúrával és gyakorlatorientált képzéssel várjuk hallgatóinkat.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-primary">Képzéseink megtekintése</a>
+                <a href="#" class="btn-secondary">Virtuális kampusztúra</a>
             </div>
         </div>
+    </section>
 
-        <div class="log-section">
-            <div class="section-title">System Log</div>
-            <div class="log-entry">
-                <span class="log-time">02:00:01</span>
-                <span class="log-tag ok">OK</span>
-                <span class="log-msg">Automated backup completed &mdash; /backup/www/ and /backup/configs/ updated</span>
-            </div>
-            <div class="log-entry">
-                <span class="log-time">00:00:00</span>
-                <span class="log-tag ok">OK</span>
-                <span class="log-msg">apache2.service &mdash; Active and serving on port 80</span>
-            </div>
-            <div class="log-entry">
-                <span class="log-time">00:00:00</span>
-                <span class="log-tag info">INFO</span>
-                <span class="log-msg">Network interface enp0s3 up &mdash; 150.111.72.20/26</span>
-            </div>
-            <div class="log-entry">
-                <span class="log-time">00:00:00</span>
-                <span class="log-tag info">INFO</span>
-                <span class="log-msg">System boot complete &mdash; Debian GNU/Linux 13 (Trixie) x86_64</span>
-            </div>
-        </div>
-
-        <footer>
-            <div class="footer-left">
-                Peter's &amp; Johnson's Tech &nbsp;&bull;&nbsp; University Network Project
-            </div>
-            <div class="footer-right">
-                Engineering Campus &nbsp;&bull;&nbsp; <span>ENG-LINSRV01</span>
-            </div>
-        </footer>
-
+    <div class="stats-bar">
+        <div class="stat"><div class="num">3</div><div class="label">Kampusz</div></div>
+        <div class="stat"><div class="num">4800+</div><div class="label">Aktív hallgató</div></div>
+        <div class="stat"><div class="num">12</div><div class="label">Alapszak</div></div>
+        <div class="stat"><div class="num">94%</div><div class="label">Elhelyezkedési arány</div></div>
     </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-tag">Képzési kínálat</div>
+            <h2>Találd meg a saját utad</h2>
+            <p>Alapképzéstől mesterképzésig, hagyományos és távoktatási formában kínálunk korszerű informatikai szakokat.</p>
+        </div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>Programtervező informatikus</h3>
+                <p>Szoftverek fejlesztése, algoritmikus gondolkodás és modern programozási paradigmák elsajátítása ipari környezetben.</p>
+                <span class="card-badge">BSc · 6 félév</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔐</div>
+                <h3>IT biztonság és hálózatok</h3>
+                <p>Kiberbiztonság, hálózati infrastruktúra tervezése és üzemeltetése, etikus hacking és rendszervédelem.</p>
+                <span class="card-badge">BSc · 6 félév</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤖</div>
+                <h3>Mesterséges intelligencia</h3>
+                <p>Gépi tanulás, adattudomány és neurális hálózatok fejlesztése valós ipari partnerekkel együttmüködve.</p>
+                <span class="card-badge">MSc · 4 félév</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>Rendszerüzemeltetés</h3>
+                <p>Szerver- és hálózati rendszerek tervezése, virtualizáció, felhőszolgáltatások és automatizálás.</p>
+                <span class="card-badge">BSc · 6 félév</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="news-bg">
+        <div class="section">
+            <div class="section-header">
+                <div class="section-tag" style="color: var(--gold-light);">Hírek és események</div>
+                <h2 style="color: var(--white);">Legújabb híreink</h2>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-date">2025. április 14.</div>
+                    <h4>Nyílt nap az Engineering Kampuszon</h4>
+                    <p>Látogass el hozzánk és ismerd meg laborjainkat, oktatóinkat és a hallgatói életet személyesen.</p>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">2025. március 28.</div>
+                    <h4>Új Cisco hálózati labor megnyitó</h4>
+                    <p>Korszerű Cisco tantermi eszközökkel bővült az Engineering Kampusz hálózati laborja.</p>
+                </div>
+                <div class="news-card">
+                    <div class="news-date">2025. március 10.</div>
+                    <h4>Felvételi tájékoztató 2025/2026</h4>
+                    <p>Részletes tájékoztató a következő tanév felvételi követelményeiről és határidőiről.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cta-section">
+        <h2>Kezdd el a jövőd ma</h2>
+        <p>Jelentkezz az őszi szemeszterre és csatlakozz a Pannónia hallgatói közösségéhez.</p>
+        <a href="#" class="btn-primary">Jelentkezés megkezdése</a>
+    </div>
+
+    <footer>
+        <div class="footer-logo"><span>Pannónia</span> Számítástechnikai Egyetem</div>
+        <div class="footer-links">
+            <a href="#">GDPR</a>
+            <a href="#">Impresszum</a>
+            <a href="#">Kapcsolat</a>
+            <a href="#">Karrier</a>
+        </div>
+        <p>&copy; 2025 Pannónia Számítástechnikai Egyetem</p>
+    </footer>
+
 </body>
 </html>
